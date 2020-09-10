@@ -60,5 +60,5 @@ header_pages:
 - categories.html
 - about.markdown
 
-minima:
-  skin: dark
+show_excerpts: true
+
