@@ -8,4 +8,4 @@ Hi, I'm Ben. I'm an MSc Computer Science student at the University of Bath, this
 
 Previously I studied English Lit at Edniburgh for four very enjoyable years, spending a lot of time making [theatre](https://www.eushakespeare.com/shows). The last two years I spent working in IT in London for an [emergency assistance company](https://www.northcottglobalsolutions.com/).
 
-I'm interested in how things get made, and potentially making them myself.
+I'm interested in how things get made, and making them myself.
