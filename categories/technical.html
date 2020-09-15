@@ -1,13 +1,13 @@
 ---
 layout: post
-permalink: /categories/weeknotes/
-title: Weeknotes
+permalink: /categories/technical/
+title: Technical
 exclude:
 ---
 
 
 <ul class="post-list">
-  {%- for post in site.categories.Weeknotes -%}
+  {%- for post in site.categories.technical -%}
   <li>
     {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
         <span class="post-meta">{{ post.date | date: date_format }}</span>
