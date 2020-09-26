@@ -6,7 +6,12 @@ categories: Weeknotes
 tags: organisation climate-change
 ---
 
-It's been a good week here. I passed both my car and motorbike theory tests on Monday, so I'm moving ahead with getting both of those licenses. By the middle of November I should be legally terrorising the roads. Taking the tests was relatively unremarkable. Everyone was wearing a mask and following procedures to avoid contact, apart from this one guy probably in his 60s who looked more at risk than any of the other staff. Go figure.
+It's been a good week here. I passed both my car and motorbike theory tests on
+Monday, so I'm moving ahead with getting both of those licenses. By the middle
+of November I should be legally terrorising the roads. <!--more-->Taking the tests was
+relatively unremarkable. Everyone was wearing a mask and following procedures
+to avoid contact, apart from this one guy probably in his 60s who looked more
+at risk than any of the other staff. Go figure.
 
 # Hot
 
@@ -47,7 +52,7 @@ interesting conversations about increasing the formality of the technical team o
 the company. The extent to which you can be involved in strategic discussions
 in a small company is really remarkable when you are young.
 
-My course welcome week starts next Wednesday. I also managed to register for all of the optional units that I wanted for my second semester at Bath: Cryptography, AI, and Cyber Security. All of these sound like they will be ᵃ ˡᵒᵗ to deal with, but I'm really looking forward to the challenge. I definitely believe courses are for pushing yourself instead of chasing a high mark for the certificate. Obviously it's preferable if you can do both...
+My course welcome week starts next Wednesday. I also managed to register for all of the optional units that I wanted for my second semester at Bath: Cryptography, AI, and Reinforcement Learning. All of these sound like they will be ᵃ ˡᵒᵗ to deal with, but I'm really looking forward to the challenge. I definitely believe courses are for pushing yourself instead of chasing a high mark for the certificate. Obviously it's preferable if you can do both...
 
 The two years I've spent in work have really helped prove that I can meet
 deadlines, and work efficiently to get to where I want to be, more to myself

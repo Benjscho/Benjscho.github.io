@@ -7,6 +7,7 @@ tags: Linux Open-source
 ---
 
 So this week while I had some free time I wanted to take an old computer I had and set it up for virtualisation so I could quickly spin up virtual Linux servers for dev environments/projects/whatever came up. I wasn't quite sure what I wanted to do at first, so this was a little bit of a process of finding out what I want, and what's easy to do.
+<!--more-->
 
 # Virtualisation
 

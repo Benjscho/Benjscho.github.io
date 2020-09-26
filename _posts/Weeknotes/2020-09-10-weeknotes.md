@@ -8,7 +8,7 @@ tags: organisation
 
 
 So far this week has been fantastic. It's been my first time off working in about 6 months (I handily squeezed all of my holiday in before travel shut down and we made the big switch to remote working). I've mostly spent it on a project to sort out a new massive desk for myself as I'm going to be studying mostly from home for the next year.
-
+<!--more-->
 ![The desk in all its glory](/assets/new-desk.JPG)
 
 I can always recommend having more desk space to work with. It's like monitors, everything fills up somehow but the extra room feels so much more productive. It's like the idea of mapping your mental reality to the external world, as we do with maps, contact books, etc. More room = more stuff. A lot of it is probably a placebo, but it still feels good.
