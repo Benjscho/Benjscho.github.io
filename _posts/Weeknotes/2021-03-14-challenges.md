@@ -8,7 +8,7 @@ tags:
 
 Had a great time at my first Hackathon last weekend! I won the Optiver
 challenge at [Hack the Burgh 7](https://2021.hacktheburgh.com/) along with my
-teammates George, James, and Vlad all from my course at Bath.
+teammates George, James, and Vlad all from the course at Bath.
 <!--more-->
 The challenge was to produce an algorithm to perform market making trades on
 a simulated exchange of one composite basket, and two underlying stocks
