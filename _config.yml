@@ -21,8 +21,7 @@
 title: Ben Schofield
 email:
 description: >- # this means to ignore newlines until "baseurl:"
-        Sometime IT guy, currently studying an MSc
-        in Computer Science at the University of Bath, 20/21.
+        CS and figuring my life out
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://blog.benjscho.dev" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: ben_j_scho
