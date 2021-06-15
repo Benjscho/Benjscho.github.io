@@ -6,12 +6,16 @@ categories: Weeknotes
 tags: MSc
 ---
 
-I just got back from seeing my Grandparent's on my Dad's side for the first
-time in maybe a year and a half.  <!--more--> It was a very hot weekend, very
-good to see them. They're getting on now, and as always the most important
-thing in life is to spend time with the people you care about.
+I skipped the weeknotes last week, popped up to London to see some friends.  So
+so nice to give them a hug, have a beer, share dinner. I've been missing that
+most out in the countryside.  <!--more--> I just got back from seeing my
+Grandparent's on my Dad's side for the first time in maybe a year and a half.
+It was a hot weekend, very good to see them. They're getting on now, but doing
+remarkably well considering everything.  We fixed a bunch of things and
+generally tried to make things a bit easier while we were there, good time
+spent with family.
 
-While we were driving back something awful happened in the village. The social
+While we were driving back something awful happened in the village, the social
 centre burned down. It housed a community pub, the post office, provided a
 rentable space to local groups, provided part of the heart of the village.
 Thinking about environments as a result of all of this. What I'm lucky to be
@@ -19,9 +23,6 @@ in, where I would like to be, the things we build and ways in which they slowly
 or suddenly fall apart. Not thinking anything interesting about them, just
 feels like it's weighing on my mind.
 
-I skipped the weeknotes last week, popped up to London to see some friends.  So
-so nice to give them a hug, have a beer, share dinner. I've been missing that
-most out in the countryside.
 
 # Tetris and my Dissertation
 
