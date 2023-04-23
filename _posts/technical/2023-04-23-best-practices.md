@@ -166,7 +166,7 @@ grep JavadocMethod $errs_file > javadoc-method-errs.txt
 grep FinalVariable $errs_file > final-var-errs.txt 
 grep FinalParameter $errs_file > final-param-errs.txt 
 ... 
-grep -V JavadocMethod $errs_file | grep -V FinalVariable | grep -V FinalParameter > other-errs.txt 
+grep -v JavadocMethod $errs_file | grep -v FinalVariable | grep -v FinalParameter > other-errs.txt 
 
 wc -l *errs.txt 
 ```
