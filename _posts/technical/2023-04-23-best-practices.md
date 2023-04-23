@@ -75,17 +75,29 @@ Build systems should also ideally be fast! The longer an engineer is waiting
 for things to build, the slower their feedback loops, and in general, the 
 shorter my feedback loop when working, the quicker I can get something done. 
 
+<!--- not ready yet
+
 ### Pipelines (CI/CD) 
 
 Pipelines are a pretty well discussed topic by now. 
 
 ### Testing 
 
+-->
+
 ## Individual best practices 
 
 This is a section on individual best practices. I think these are separate 
 enough from the practices of how to work as part of a team over a long 
 timescale. This is about being the best developer you can be. 
+
+The core idea for me is *cutting down the feedback loop*. I learn based on 
+a feedback loop, I develop with one. It's all about having a target state, 
+and iteratively getting there in small steps. This is a lot like test driven 
+development, where you write your tests first and then write code until they 
+pass, except I'm defining my end goal first and getting feedback on my 
+progress towards it. The shorter your feedback loop in making a change and 
+seeing progress towards your goal, the better. 
 
 ### Know your tools (editing and reading code)
 
@@ -128,12 +140,51 @@ your codebase, whether that's
 cmd + shift + f in VSCode. You can learn a lot about how some code is used 
 with just grep. 
 
-
-
-
-
 ### Little scripts 
 
-One area where I think 
-generative LLMs are incredibly useful is in getting over the learning curve 
-for little scripts that help you get your work done. 
+One way I'm becoming a lot more productive is by writing and using one time 
+scripts. This kind of development is at the opposite end of Team best 
+practices. These scripts should be fast to write, lightweight, and help me 
+do things that I'm going to have to do more than once.
+
+An example would be where recently I was working on improving code quality in a
+Java package that my team had inherited. We use
+[Checkstyle](https://checkstyle.org/) internally to make sure our code meets
+certain best practices, but this package was missing a bunch of our rules. When
+I first applied our rules to it, there were 1866 errors. To fix this, I wrote a
+series of small scripts to fix them. These errors were all categoriseable, so
+first I wrote a script that would parse the error log and split them into
+different types:
+
+```shell
+errs_file=checkstyle-errs.txt
+# Get checkstyle output 
+checkstyle > $errs_file
+
+# Split error types into their own files
+grep JavadocMethod $errs_file > javadoc-method-errs.txt 
+grep FinalVariable $errs_file > final-var-errs.txt 
+grep FinalParameter $errs_file > final-param-errs.txt 
+... 
+grep -V JavadocMethod $errs_file | grep -V FinalVariable | grep -V FinalParameter > other-errs.txt 
+
+wc -l *errs.txt 
+```
+
+This script split all the different types of errors into their own files and 
+gave me a way of tracking my progress fixing them. I used `wc` to see how 
+many of the different errors I had left to fix. 
+
+I then set about parsing the errors with `awk` to produce small `sed` scripts 
+that would fix them for me. For things like parameters or variables that 
+should have been `final` this was pretty easy. You can get a lot done with 
+relatively simple tools. 
+
+One area where I think generative LLMs are already incredibly useful, and will
+continue to get better,  is in getting over the learning curve for little
+scripts that help you get your work done. People like [John
+Wiseman](https://twitter.com/lemonodor/status/1636849040548675584?s=20) and
+[Simon
+Willison](https://simonwillison.net/2023/Apr/7/chatgpt-lies/#warn-off-or-help-on)
+have already pointed this out, and provided great examples. **Tools are about 
+making things easier or faster, so the scope of what you can do is expanded.**
