@@ -180,7 +180,7 @@ that would fix them for me. For things like parameters or variables that
 should have been `final` this was pretty easy. You can get a lot done with 
 relatively simple tools. 
 
-One area where I think generative LLMs are already incredibly useful, and will
+One area where I think generative LLMs are already incredibly useful[^1], and will
 continue to get better,  is in getting over the learning curve for little
 scripts that help you get your work done. People like [John
 Wiseman](https://twitter.com/lemonodor/status/1636849040548675584?s=20) and
@@ -188,3 +188,8 @@ Wiseman](https://twitter.com/lemonodor/status/1636849040548675584?s=20) and
 Willison](https://simonwillison.net/2023/Apr/7/chatgpt-lies/#warn-off-or-help-on)
 have already pointed this out, and provided great examples. **Tools are about 
 making things easier or faster, so the scope of what you can do is expanded.**
+
+[^1]: LLMs are controversial for good reason. They're good at some things, I 
+think this is one of them. They can also cause massive harm when misused. AI as 
+a field is filled with people trying to make money by moving fast without 
+considering the consequences. 
