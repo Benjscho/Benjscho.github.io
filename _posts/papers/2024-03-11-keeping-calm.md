@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Paper Summary: Keeping CALM"
-date: 2024-03-11 21:00:00 +07800
+date: 2024-03-11 21:00:00 +0700
 mathjax: true
 categories: papers
 tags: software-engineering swe productivity
