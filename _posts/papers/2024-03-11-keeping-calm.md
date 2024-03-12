@@ -2,11 +2,12 @@
 layout: post
 title: "Paper Summary: Keeping CALM"
 date: 2024-03-11 21:00:00 +07800
+mathjax: true
 categories: papers
 tags: software-engineering swe productivity
 ---
 
-[# Keeping CALM: when distributed consistency is easy](https://dl.acm.org/doi/10.1145/3369736)
+Summary of [Keeping CALM: when distributed consistency is easy](https://dl.acm.org/doi/10.1145/3369736)
 
 This paper from Hellerstein and Alvaro centers around what we can do without coordinating. The core insight of the paper is that some distributed programs can run without coordination, as long as the output of running the program on a subset of the inputs doesn't change once you get more information.
 
