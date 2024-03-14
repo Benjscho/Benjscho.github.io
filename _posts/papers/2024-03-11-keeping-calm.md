@@ -15,7 +15,9 @@ This paper from Hellerstein and Alvaro centers around what we can do without coo
 
 This made sense to me as kind of the core insight behind something like MapReduce. For a simple example, imagine we had a bunch of books, and we wanted to count the number of times the word "peacock" appears in all of them. We can spread that work out. If someone gets a result first, that's not going to change. We can just add all the results together at the end (a commutative operation) to get our final result, so the problem doesn't require coordination and is _monotonic_. 
 
-In a contrary example, we could think of taking the same books and asking if the word "frangipane" occurs in any of them. Because here we're asking a question about _all_ of the books, the result can change when we get more information. That gives us an example of a program that is _non-monotonic_. 
+In a contrary example, we could think of taking the same books and asking for a list of words that is unique to each book. Because here we're asking a question about _all_ of the books, and updating our list of words depending on what words other books have, the result can change when we get more information. We also have to check the results from every book before we can give any intermediate result for certain. That gives us an example of a program that is _non-monotonic_.[^1]
+
+[^1]: Previously I gave this example as asking if the word "frangipane" occurs in any of them. Thanks to Oleg Kiselev for pointing out that this could be terminated early in the positive case, and therefore isn't a great example of a non-monotonic program. The updated example requires processing all of the books before giving a result. 
 
 Formally they give the definition:
 
