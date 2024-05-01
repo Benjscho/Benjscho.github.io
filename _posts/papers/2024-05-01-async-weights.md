@@ -13,16 +13,14 @@ Majority quorum systems are useful in providing a simple mechanism for consensus
 
 <!--more-->
 
-The main contribution of this paper is defining three ways of reassigning weights in a WQMS. The first two are shown to be as difficult as consensus, while the third can be performed consensus-free. 
-
-I'm not fully sure how practically useful this is, but that's also because I don't know much about the real world uses of WQMS! As far as the paper goes, it's very clearly written, with some nicely presented proofs. 
+The main contribution of this paper is defining three ways of reassigning weights in a WQMS. The first two are shown to be as difficult as consensus, while the third can be performed consensus-free. I'm not fully sure how practically useful this is, but that's also because I don't know much about the real world uses of WQMS! As far as the paper goes, it's very clearly written, with some nicely presented proofs. 
 
 ### Weight Reassignment
 The paper presents the problem of weight reassignment. Solving this problem means providing an algorithm to update the weights of a static set of servers running a WQMS. 
 
-Weight reassignment has some restrictions. With the system, we want to be able to tolerate up to $f$ servers (out of a total $n$) crashing at once. This means that we need to place a limit on the total weight of the $f$ most weighted servers, we'll call this set $F$, so they have less than half of the total weight. This way, if *any* $f$ servers fail, the remaining $n - f$ can continue to make progress. We call this restriction *integrity*. 
+Weight reassignment has some restrictions. With the system, we want to be able to tolerate up to $f$ servers (out of a total $n$) crashing at once. This means that we need to place a limit on the total weight of the $f$ most weighted servers so they have less than half of the total weight. This way, if *any* $f$ servers fail, the remaining $n - f$ can continue to make progress. We call this restriction *integrity*. 
 
-This means that we can't reassign weights in a way that would violate integrity. Say we had a quorum of 5 servers ($n = 5$), each with a voting weight of $1$, and we wanted to tolerate up to two server failures, so $f = 2$. If we were to add $2$ to the weight of any of the servers, now the $f$ top weighted servers would have a weight of $4$, and the total weight would be $7$. Since the weight of $F$ is greater than half of the total weight, this would violate integrity. 
+This means that we can't reassign weights in a way that would violate integrity. Say we had a quorum of 5 servers, each with a voting weight of $1$, and we wanted to tolerate up to two server failures. If we were to add $2$ to the weight of any of the servers, now the $f$ top weighted servers would have a total weight of $4$, and the total weight of all servers would be $7$. Since the total weight of the top $f$ servers is greater than half of the total weight, this would violate integrity. For brevity going forward, we'll call the set of the top $f$ servers $F$.
 
 There are three other restrictions on the weight reassignment algorithm that are simpler:
 - Validity-I - when a weight change is proposed, if it violates integrity then a no-op change (a change with zero weight difference) is created. If it *doesn't* violate integrity then the proposed change is created.
