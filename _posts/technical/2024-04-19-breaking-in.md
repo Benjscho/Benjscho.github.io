@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Breaking into tech: Advice on getting your first role or internship"
-date: 2024-04-19 10:00:00 +0700
+date: 2024-04-19 10:00:00 -0700
 categories: technical
 tags: software-engineering swe intern advice
 ---

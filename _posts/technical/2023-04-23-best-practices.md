@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Best Practices for Software Engineering (IMHO)"
-date: 2023-04-22 10:43:00 +0700
+date: 2023-04-22 10:43:00 -0700
 categories: technical
 tags: software-engineering swe productivity
 ---
