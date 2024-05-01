@@ -13,7 +13,9 @@ Majority quorum systems are useful in providing a simple mechanism for consensus
 
 <!--more-->
 
-The main contribution of this paper is defining three ways of reassigning weights in a WQMS. The first two are shown to be as difficult as consensus, while the third can be performed consensus-free. I'm not fully sure how practically useful this is, but that's also because I don't know much about the real world uses of WQMS! As far as the paper goes, it's very clearly written, with some nicely presented proofs. 
+The main contribution of this paper is defining three ways of reassigning weights in a WQMS. The first two are shown to be as difficult as consensus, while the third can be performed consensus-free. I'm not fully sure how practically useful this is, but that's also because I don't know much about the real world uses of WQMS[^1]! As far as the paper goes, it's very clearly written, with some nicely presented proofs. 
+
+[^1]: I've been pointed to [this paper (_Read-Write Quorum Systems Made Practical_)](https://dl.acm.org/doi/pdf/10.1145/3447865.3457962) which seems to be a good read on this.
 
 ### Weight Reassignment
 The paper presents the problem of weight reassignment. Solving this problem means providing an algorithm to update the weights of a static set of servers running a WQMS. 
