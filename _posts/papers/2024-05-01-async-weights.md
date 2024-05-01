@@ -13,9 +13,9 @@ Majority quorum systems are useful in providing a simple mechanism for consensus
 
 <!--more-->
 
-The main contributions of this paper is defining three ways of reassigning weights in a WQMS. The first two are shown to be as difficult as consensus, while the third can be performed consensus-free. 
+The main contribution of this paper is defining three ways of reassigning weights in a WQMS. The first two are shown to be as difficult as consensus, while the third can be performed consensus-free. 
 
-I'm not fully sure how valuable this is, but that's also because I don't know much about the practical uses of WQMS! As far as the paper goes, it's very clearly written, with some nicely presented proofs. 
+I'm not fully sure how practically useful this is, but that's also because I don't know much about the real world uses of WQMS! As far as the paper goes, it's very clearly written, with some nicely presented proofs. 
 
 ### Weight Reassignment
 The paper presents the problem of weight reassignment. Solving this problem means providing an algorithm to update the weights of a static set of servers running a WQMS. 
@@ -26,7 +26,7 @@ This means that we can't reassign weights in a way that would violate integrity.
 
 There are three other restrictions on the weight reassignment algorithm that are simpler:
 - Validity-I - when a weight change is proposed, if it violates integrity then a no-op change (a change with zero weight difference) is created. If it *doesn't* violate integrity then the proposed change is created.
-- Validity-II - there's an api clients can use to check the weights of a server $s$, `read_changes(s)`. When it's called, a client gets a list of all of the weight changes made to $s$, from which they can reconstruct the current weight of $s$ by summing the changes. 
+- Validity-II - there's an API clients can use to check the weights of a server $s$, `read_changes(s)`. When it's called, a client gets a list of all of the weight changes made to $s$, from which they can reconstruct the current weight of $s$ by summing the changes. 
 - Livesness - if a server calls `reassign`, the operation will eventually complete, and the server will get back a message indicating the set of changes made.
 
 #### Equivalence to consensus
@@ -35,7 +35,7 @@ Laid out in this way, the authors go on to show that this problem is equivalent 
 
 I really liked the proof they use to demonstrate this. The authors construct a scenario in which every server proposes a weight change. These changes are constructed such that one, and only one, of the weight changes can succeed with a non-zero weight change. If two or more of the changes succeeded, then integrity would be violated. 
 
-For the proof, the servers are divided into two disjoint sets, $F$ and $S \backslash F$, where $F$ is the set of servers $F = \{ s_1, s_2, ..., s_f\}$. $S$ is the set of all servers, so $S \backslash F$ is the set of all servers not in $F$. Note that the sets have the following lengths $|S| = n, |F| = f, |S \backslash F| = n - f$. The initial weight of each server $s \in F$ is $\frac{n - 1}{2f}$ while the weight of every server $s \in S \backslash F$ is $\frac{n+1}{2(n - f)}$. We can call the total weight of a set $S$ at time $t$: $\texttt{W}_{S,t}$. Based on the initial weights of each server in the sets, $\texttt{W}_{F,0} = \frac{n - 1}{2f} \times f$ and $\texttt{W}_{S \backslash F,0} = \frac{n+1}{2(n - f)} \times (n - f)$. Since  $\frac{n - 1}{2} < \frac{n+1}{2}$, we can see that the total weight of $F$ is less than the total weight of $S \backslash F$ and integrity is satisfied by the initial weights. 
+For the proof, the servers are divided into two disjoint sets, $F$ and $S \backslash F$, where $F$ is the set of servers $F = \{ s_1, s_2, ..., s_f\}$. $S$ is the set of all servers, so $S \backslash F$ is the set of all servers not in $F$. Note that the sets have the following lengths $$|S| = n, |F| = f, |S \backslash F| = n - f$$. The initial weight of each server $s \in F$ is $\frac{n - 1}{2f}$ while the weight of every server $s \in S \backslash F$ is $\frac{n+1}{2(n - f)}$. We can call the total weight of a set $S$ at time $t$: $\texttt{W}_{S,t}$. Based on the initial weights of each server in the sets, $\texttt{W}_{F,0} = \frac{n - 1}{2f} \times f$ and $\texttt{W}_{S \backslash F,0} = \frac{n+1}{2(n - f)} \times (n - f)$. Since  $\frac{n - 1}{2} < \frac{n+1}{2}$, we can see that the total weight of $F$ is less than the total weight of $S \backslash F$ and integrity is satisfied by the initial weights. 
 
 Each of the servers $s_i$ proposes a weight change. For the servers in $F$, they propose adding $0.5$ to their weight: $\texttt{reassign}(s_i, 0.5)$, while all servers in $S \backslash F$ propose subtracting $0.5$ from their weight: $\texttt{reassign}(s_i, -0.5)$. From this, we can see that accepting one of these changes would not violate integrity. E.g., if we accept one change from $F$, then the new total weight of $F$ becomes $\frac{n - 1}{2} + 0.5$, which is still less than $\frac{n+1}{2}$. Similarly, if we accept one change from $S \backslash F$, then $\texttt{W}_{S \backslash F,1} = \frac{n+1}{2} - 0.5$. 
 
@@ -58,7 +58,7 @@ The authors assert that if the first condition holds, then the second is locally
 
 $$|S\backslash F| \times \frac{\texttt{W}_{S, 0}}{2(n - f)} = \frac{\texttt{W}_{S, 0}}{2}$$
 
-So $\texttt{W}_{S\backslash F, t} > \frac{\texttt{W}_{S, 0}}{2}$ and integrity is preserved at all times. 
+So $\texttt{W}_{S \backslash F, t} > \frac{\texttt{W}_{S, 0}}{2}$ and integrity is preserved at all times. 
 
 The reason no other server can take away another's weight without consensus is that if we have any two servers trying to take away weight from some server $s_i$, then while either of them could make a transfer recognizing the second condition, there's no way for both transfers to succeed without some form of consensus to decide which succeeds. 
 
