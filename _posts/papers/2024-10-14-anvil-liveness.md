@@ -7,7 +7,7 @@ categories: papers
 tags: software-engineering distributed-systems academic automated-reasoning
 ---
 
-_Summary of [_Anvil: Verifying Liveness of Cluster Management Controllers_](https://www.usenix.org/conference/osdi24/presentation/sun-xudong)_
+_Summary of [Anvil: Verifying Liveness of Cluster Management Controllers](https://www.usenix.org/conference/osdi24/presentation/sun-xudong)_
 
 Wouldn't it be nice to write some software and confidently say that you know it's right? That, as long as some assumptions about the world hold, it's going to do exactly what you want it to, no matter what strange permutations or combinations of failures happen. In broad strokes that's the promise of formal verification and proofs in software.
 
