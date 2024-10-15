@@ -19,17 +19,15 @@ This paper, in particular, is about formally verifying controllers. More specifi
 
 Let's start with a quick diversion/refresher, feel free to skip if you already know! TLA stands for temporal logic of actions. It's a way of thinking, step by step, how things change over time as the result of actions. Leslie Lamport came up with the field as a way to describe concurrent programs in a formal, logical way. 
 
-We use formal methods like TLA to be able to make concrete mathematical statements about things that we can prove or disprove. Something like "the ground is dry" is a logical proposition about the world. If then the action happens that "it rains" we can know that in the next state "the ground is dry" is not going to be true. TLA allows us to draw these same kinds of logical conclusions about concurrent systems.
+We use formal methods like TLA to be able to make concrete mathematical statements about things that we can then prove or disprove. Something like "the ground is dry" is a logical proposition about the world. If then an action happens like "it rains" we can know that in the next state "the ground is dry" is false. TLA allows us to draw these same kinds of logical conclusions about concurrent systems.
 
-It's really useful when we want to describe properties of systems. When that comes to things like control planes, these could be safety properties, or liveness properties. A safety property says that our system doesn't do a bad thing, while a liveness property says that our system eventually does a good thing, or the thing we want it to do.
-
-Liveness is a tricky thing! When it comes to distributed systems, and specifically proving facts about them, safety properties are usually easier to prove. It's easy to prove a safety property about a system since a system can usually do nothing instead of violating it. Liveness properties require the system to keep making progress towards a goal.
+It's really useful when we want to describe properties of systems. These could be safety properties, or liveness properties. A safety property says that our system doesn't do a bad thing, while a liveness property says that our system eventually does a good thing, or the thing we want it to do. Liveness is a tricky thing! Safety properties are usually easier to prove because a system that does nothing can be perfectly safe. Liveness properties require the system to keep making progress towards a goal.
 
 ## What does this paper provide?
 
-This paper provides a property called **eventually stable reconciliation** (ESR). They claim that this property precludes a lot of bugs in controllers. To go along with this, they present a framework, *Anvil*, for developing controllers and verifying that they meet this property. They then use Anvil to verify three Kubernetes controllers, and show they have comparable performance to their un-verified counterparts.
+This paper provides a property called **eventually stable reconciliation** (ESR). They claim that this property precludes a lot of bugs in controllers. It also presents *Anvil*, a framework for developing kubernetes controllers and verifying that they meet this property. They then use Anvil to verify three Kubernetes controllers and show they have comparable performance to their un-verified counterparts.
 
-So the most interesting parts of this are ESR, and Anvil. ESR is a TLA formula, it's a statement about a system that can be expressed in TLA. It essentially says that if what the controller wants stops changing, then the system should eventually reach that state.
+ESR is a TLA formula, it's a statement about a system that can be expressed in TLA. It essentially says that if what the controller wants stops changing, then the system should eventually reach that state.
 
 That seems super reasonable as a goal to me! Intuitively, if a controller is able to update a system to match its desired state then it seems like it's doing its job. If you don't have familiarity with controllers or control plane software, you can think of them as being like a thermostat. You set some kind of desired state through configuration (turn the thermometer to 20C), and then the controller makes adjustments to the environment (turns your central heating on/off) while monitoring for changes (checking the current temp) until its desired state is reached. 
 
@@ -41,15 +39,15 @@ $$
 \forall d.\Box(\Box \text{desire}(d) \implies \Diamond \Box \text{match}(d))
 $$[^1]
 
-This formula asserts that for all desired states $d$, if the controller always desires $d$, then eventually $d$ will always match the current state. 
+This asserts that for all desired states $d$, if the controller always desires $d$, then eventually $d$ will always match the current state. It seems clear that this will prevent a whole range of bugs that prevent the controller from moving towards its goal. 
 
 ## How do they prove things?
-
-Anvil is a toolkit for implementing Kubernetes controllers while proving that ESR holds. Proving implementations with Anvil is still a manually process, you still have to write a good amount of proof code to go with your implementation, but Anvil does provide a lot of handy looking lemmas[^2] to help with that process.
 
 The authors use [Verus], a language that allows writing proofs in the form of preconditions and postconditions. Verus leverages Rust's type system and reduces the problem to an SMT-solvable form. The team extended Verus with a set of simple temporal logic constructs to handle the temporal aspects of their proofs.
 
 The advantage of using Verus is that it allows for modular proofs, breaking down complex properties into smaller, more manageable pieces. This approach makes it easier to reason about and verify complex systems like cluster controllers. Like [Dafny], and in contrast to a model language like TLA+, it allows verifying the _actual code_ that you run in production.
+
+The Anvil toolkit provides a good deal of work towards proving ESR for Kubernetes controllers. Proving implementations with Anvil is still a manual process, you still have to write proof code to go with your implementation, but Anvil does provide a lot of handy looking lemmas[^2] to help.
 
 By applying their ESR property and proof methodology, the authors were able to identify and fix bugs in existing controllers that had been missed by extensive testing. This shows the power of formal verification in catching subtle issues that can be nearly impossible to uncover with traditional testing. 
 
