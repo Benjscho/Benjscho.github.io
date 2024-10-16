@@ -47,6 +47,8 @@ The authors use [Verus], a language that allows writing proofs in the form of pr
 
 The advantage of using Verus is that it allows for modular proofs, breaking down complex properties into smaller, more manageable pieces. This approach makes it easier to reason about and verify complex systems like cluster controllers. Like [Dafny], and in contrast to a model language like TLA+, it allows verifying the _actual code_ that you run in production.
 
+![A diagram from the paper of the anvil workflow](/assets/2024/10/anvil.png)
+
 The Anvil toolkit provides a good deal of work towards proving ESR for Kubernetes controllers. Proving implementations with Anvil is still a manual process, you still have to write proof code to go with your implementation, but Anvil does provide a lot of handy looking lemmas[^2] to help.
 
 By applying their ESR property and proof methodology, the authors were able to identify and fix bugs in existing controllers that had been missed by extensive testing. This shows the power of formal verification in catching subtle issues that can be nearly impossible to uncover with traditional testing. 
