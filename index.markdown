@@ -5,20 +5,17 @@
 layout: home
 ---
 
-Hi, I'm Ben! I'm a software developer at AWS, living in Vancouver and
-originally from the UK. I started this blog to track my progress and work in
-the open while I was doing my MSc in Computer Science in 2020/21. I haven't
-updated it much since then.
+Hi, I'm Ben! I'm a software developer at AWS, living in Seattle.
 
 Right now I'm working on the Distributed SQL team at AWS, building a new 
-database. In general I'm working on/interested in:
+database ([Aurora DSQL](https://aws.amazon.com/rds/aurora/dsql/)). In general 
+I'm working on/interested in:
+- Learning and reading about distributed systems (I post some summaries of papers I've read here)
 - Learning how to be a better and faster engineer in my day job
-- Getting better at writing Rust
-- Learning and reading about distributed systems
-- Learning more about parsing, ASTs, compilers, and programming language
-    theory.
+- Getting better at writing code, recently Rust in particular
 
 If you'd like to chat to me about anything you can reach me at blog (at)
 benjscho.dev
 
-Thanks for visiting, and drop me a message if you want to talk about anything you've read.
+Thanks for visiting, and drop me a message or an email if you want to talk about 
+anything you've read.
