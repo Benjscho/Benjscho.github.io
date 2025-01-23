@@ -7,6 +7,8 @@ categories: papers
 tags: software-engineering distributed-systems academic networking datacenter
 ---
 
+_Summary of [It's Time to Replace TCP in the Datacenter](https://arxiv.org/pdf/2210.00714)_
+
 This position paper from John Ousterhout sets out everything that's wrong with TCP and exactly how we should fix it. <!--more--> It's an interesting and purposefully polemical paper[^1]. Ousterhout has serious pedigree in distributed systems. He was one of the co-authors of [_In Search of an Understandable Consensus Algorithm_](https://raft.github.io/raft.pdf), the paper that introduced Raft, created the Tcl scripting language, and has led a number of teams to impressive results over the years, so he's talking from a place of experience.
 
 The paper proposes that there are core issues with TCP that can't be fixed. It argues that these issues are so core to TCP as to require breaking changes, at which point you might as well fix everything at once. It then goes on to discuss [Homa](https://homa-transport.atlassian.net/wiki/spaces/HOMA/overview), a protocol designed specifically for the datacenter, that fixes all of these issues.
