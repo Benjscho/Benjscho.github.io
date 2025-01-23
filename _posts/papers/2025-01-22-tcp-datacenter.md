@@ -44,9 +44,11 @@ TCP requires **in order delivery**, although as Ousterhout admits, with a limite
 
 The main thrust of Homa is that it fixes all of these issues. It's message oriented, so work arrives in dispatchable units. It's connectionless, so there's no setup or ongoing overhead. It can be delivered out of order, allowing packet spraying--balancing load evenly across network links. It also lets receivers control congestion through a kind of token bucket method. Senders can only send packets in response to grants from a receiver, so the receiver can limit congestion and use grants to prioritize certain (shorter) messages.
 
+![Graph displaying the comparative slowdown between Homa, TCP, and DTCP. Homa appears to have a much better slowdown ratio throughout](/assets/2025/homa-slowdown.png)
+
 The only data provided in this paper is a graph displaying the 99th percentile slowdown on a loaded network. This took me a little while to parse so I'm going to talk my way through my understanding. As this is the slowdown, it's graphing the ratio between the latency of messages in an unloaded, vs loaded network. It's essentially showing how much slower the p99 is when the network is loaded, vs unloaded for each of these protocols, so we can see that for Homa, messages are about 6-10X slower under load for the p99, while for TCP it's over 100X for small messages, dropping down to a little under 20X for 1M messages. 
 
-I found this a little confusing of a way to present the information but it gets the message across! Homa is clearly designed to benefit tail latencies for smaller messages. 
+I found this a little confusing of a way to present the information, but it gets the message across! Homa is clearly designed to benefit tail latencies for smaller messages. 
 
 ### But what about encryption? 
 
