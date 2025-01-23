@@ -62,7 +62,7 @@ There are other protocols in the space. Discussing this paper with colleagues, I
 
 I found this a fun read. Like a lot of foundational software, TCP becomes one of those things that you rarely think about _not_ using. It's a strong default for many good reasons. TCP is incredibly common, almost any host that you can think of has a TCP implementation, and because its so common its been heavily optimised over the years. 
 
-But it's always worth revisiting building blocks as things change, particularly the most common ones. Saving resources at the lower levels can be so powerful _because_ they are so common. Saving 1% on a $100M cost can justify spending a lot more engineering time than saving 90% on $1000. 
+But it's always worth revisiting building blocks as things change, particularly the most common ones. Saving resources at the lower levels can be so powerful _because_ they are so common. Saving 1% on a \$100M cost can justify spending a lot more engineering time than saving 90% on \$1000. 
 
 However, I don't know if this seems to be one of those cases. TCP is just so ubiquitous, and so well optimised already, that for 95% of use cases it's not worth the effort to switch. With every new technology there are new operational scars to learn. The further out on the bleeding edge you are, the more you have to debug yourself. I think for extremely high throughput systems where you have control over the vertical system it will make sense. I definitely agree with the position that integrating any such protocol with a few major RP frameworks is the best start to get things off the ground. I'll be interested to see over the next few years how this space continues to develop.
 
