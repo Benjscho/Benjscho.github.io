@@ -1,0 +1,48 @@
+---
+---
+
+@import "minima";
+
+// Custom styles
+.post-title { 
+  background: linear-gradient(45deg, #667eea, #764ba2);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.post-list-item {
+  border-left: 4px solid #667eea;
+  padding-left: 1rem;
+  margin-bottom: 2rem;
+  transition: transform 0.2s;
+  &:hover { transform: translateX(5px); }
+}
+
+.tag {
+  background: #667eea;
+  color: white;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 0.8em;
+  margin-right: 4px;
+  text-decoration: none;
+  display: inline-block;
+  transition: background 0.2s;
+  &:hover { 
+    background: #764ba2; 
+    color: white;
+  }
+}
+
+code { 
+  background: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 4px;
+}
+
+blockquote {
+  border-left: 4px solid #667eea;
+  background: #f8f9fa;
+  padding: 1rem;
+  border-radius: 0 4px 4px 0;
+}

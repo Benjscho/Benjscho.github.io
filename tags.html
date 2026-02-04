@@ -1,0 +1,72 @@
+---
+layout: page
+permalink: /tags/
+title: Tags
+---
+
+<div id="tag-cloud">
+  <p>Filter by tag:</p>
+  {% assign sorted_tags = site.tags | sort %}
+  {% for tag in sorted_tags %}
+    <button class="tag-filter" data-tag="{{ tag[0] }}">{{ tag[0] }} ({{ tag[1].size }})</button>
+  {% endfor %}
+  <button class="tag-filter active" data-tag="all">Show All</button>
+</div>
+
+<div id="posts-container">
+  {% for post in site.posts %}
+    <div class="post-item" data-tags="{% for tag in post.tags %}{{ tag | downcase | replace: ' ', '-' }} {% endfor %}">
+      {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
+      <span class="post-meta">{{ post.date | date: date_format }} • {% assign words = post.content | number_of_words %}{% if words < 360 %}1 min read{% else %}{{ words | divided_by:180 }} min read{% endif %}</span>
+      <h3>
+        <a class="post-link" href="{{ post.url | relative_url }}">
+          {{ post.title | escape }}
+        </a>
+      </h3>
+      <div class="post-tags">
+        {% for tag in post.tags %}
+          <span class="tag">{{ tag }}</span>
+        {% endfor %}
+      </div>
+      {{ post.excerpt }}
+    </div>
+  {% endfor %}
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const filters = document.querySelectorAll('.tag-filter');
+  const posts = document.querySelectorAll('.post-item');
+  
+  function filterPosts(selectedTag) {
+    filters.forEach(f => f.classList.remove('active'));
+    
+    posts.forEach(post => {
+      if (selectedTag === 'all' || post.dataset.tags.includes(selectedTag.toLowerCase().replace(' ', '-'))) {
+        post.style.display = 'block';
+      } else {
+        post.style.display = 'none';
+      }
+    });
+    
+    // Update active filter button
+    const activeFilter = document.querySelector(`[data-tag="${selectedTag}"]`) || document.querySelector('[data-tag="all"]');
+    activeFilter.classList.add('active');
+  }
+  
+  // Handle filter button clicks
+  filters.forEach(filter => {
+    filter.addEventListener('click', function() {
+      const selectedTag = this.dataset.tag;
+      filterPosts(selectedTag);
+      window.location.hash = selectedTag === 'all' ? '' : selectedTag;
+    });
+  });
+  
+  // Handle URL fragment on page load
+  const hash = window.location.hash.substring(1);
+  if (hash) {
+    filterPosts(hash);
+  }
+});
+</script>
