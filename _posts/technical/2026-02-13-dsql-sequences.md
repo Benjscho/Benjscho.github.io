@@ -56,7 +56,9 @@ Marc's [blog on the circle of
 life](https://marc-bowes.com/dsql-circle-of-life.html) is a good primer on
 DSQL's architecture. When you call `nextval()`, the read goes to storage,
 checks the latest value, and increments the value before writing the update to
-the journal. So far so simple? 
+the journal. So far so simple? The important thing to remember is that
+getting the next set of values in a sequence goes through a full circle of
+life.
 
 In distributed systems, creating scalable applications is a mutual 
 responsibility[^3]. The big problem with scaling sequences is they're a 
@@ -208,9 +210,9 @@ look like?
 Experiment 2: Bulk INSERT with 1000 rows
 ------------------------------------------------------------
 
-CACHE=1:     6229.11 ms
-CACHE=65536: 83.16 ms
-UUID:        77.24 ms
+CACHE=1:     6229.11 ms total
+CACHE=65536: 83.16 ms total
+UUID:        77.24 ms total
 
 Sequence CACHE=65536 vs CACHE=1: 74.9x faster
 UUID vs CACHE=1: 80.6x faster
