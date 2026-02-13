@@ -6,12 +6,12 @@ categories: technical
 tags: dsql postgres sequences 
 ---
 
-# How DSQL makes sequences scale
-
 Sequences are one of those Postgres features that you don't think much about.
 You can ask for the next number in the sequence, and you get it. That works
 pretty well when you have one machine asking for the next number, but what
 about 10,000?
+
+<!--more-->
 
 We've just launched Sequence support in DSQL and we're excited about it. Up
 until now our recommendation has been to use UUIDs, and for truly massive
@@ -39,9 +39,7 @@ CREATE TABLE orders (
 This blog is going to go more into the details of why sequences look like
 they do in DSQL, but to get started that's all you need to know\![^2]
 
-[^2]: For more details on sequences and how they work in DSQL, you can see
-the [documentation here](https://docs.aws.amazon.com/aurora-dsql/latest/userguide/sequences-identity-columns.html)
-and the [supported syntax](https://docs.aws.amazon.com/aurora-dsql/latest/userguide/create-sequence-syntax-support.html).
+[^2]: For more details on sequences and how they work in DSQL, you can see the [documentation here](https://docs.aws.amazon.com/aurora-dsql/latest/userguide/sequences-identity-columns.html) and the [supported syntax](https://docs.aws.amazon.com/aurora-dsql/latest/userguide/create-sequence-syntax-support.html).
 
 ## Sequences in DSQL
 
@@ -63,7 +61,7 @@ the journal. So far so simple?
 
 In distributed systems, creating scalable applications is a mutual 
 responsibility[^3]. The big problem with scaling sequences is they're a 
-classic hot key! DSQL's advantage is that we can support endless horizontal
+classic [hot key](https://marc-bowes.com/dsql-avoid-hot-keys.html). DSQL's advantage is that we can support endless horizontal
 scaling at every component, but to be able to scale DSQL needs to be able
 to spread your changes out across workers. For typical inserts we do that
 by partitioning the data. However, you can't partition a single row table. 
@@ -74,7 +72,7 @@ by partitioning the data. However, you can't partition a single row table.
 Remember the `CACHE` value from sequences in Postgres? This sets how many
 values a given backend gets on each call to `nextval()`. So with `CACHE=3`
 a backend would fetch 3 values on every call to `nextval()`, which they can
-then use in requests without performing extra expensive I/O.
+then use in requests without performing extra expensive IO.
 
 
 ```
@@ -105,7 +103,7 @@ cache values can result in gaps in sequences.
 
 DSQL parallelises our compute in the form of the Query Processor. Instead of
 individual backends, statements are executed by QPs. Here, `CACHE` functions
-the same as in Postgres! When a QP calls `nextval()` it gets a cached set
+the same as in Postgres. When a QP calls `nextval()` it gets a cached set
 of values, and hands them out. So now to the elephant in the room for DSQL
 support, we only support `CACHE=1` or `CACHE>=65536`.
 
@@ -116,9 +114,9 @@ are rarely a bottleneck in DSQL transactions.
 
 [^3]: I like Pat Helland's [BIG
     DEAL](https://www.cidrdb.org/cidr2024/papers/p63-helland.pdf) paper for
-discussing the deal between infra providers and app developers here:
-> - Scalable apps don’t concurrently update the same key.
-> - Scalable DBs don’t coordinate across disjoint TXs.
+  discussing the deal between infra providers and app developers here:
+  > - Scalable apps don’t concurrently update the same key.
+  > - Scalable DBs don’t coordinate across disjoint TXs.
 
 
 
@@ -131,12 +129,12 @@ and would prefer a dense, increasing sequence. That's why DSQL supports
 
 To put some numbers on it, I ran some experiments[^4]. 
 
-[^4]: You can find the code for
-this available here: https://gist.github.com/Benjscho/7573e0e1e6b7cc574c384cd0492cbcb6
+[^4]: You can find the code for this [available here](https://gist.github.com/Benjscho/7573e0e1e6b7cc574c384cd0492cbcb6).
 
-Each of these I tested with `CACHE 1`, `CACHE 65536`, and I provided an 
-example with UUID to show the difference. Since UUID is always locally 
-generated, there's no way for it to conflict and serves as a good baseline.
+Each of these I tested with `CACHE 1`, `CACHE 65536`, and I provided an example
+with UUID for a value that doesn't require coordination. Since UUID is always
+locally generated, there's no way for it to conflict and serves as a good
+baseline.
 
 This is what the DDL for my first test looks like:
 
@@ -146,7 +144,7 @@ CREATE SEQUENCE seq_cache_65536 CACHE 65536;
 ```
 
 Here in the first test I'm creating two sequences, one with CACHE=1, and one
-with CACHE=65536. We're creating the new values serially, so we're making one 
+with CACHE=65536. We're then fetching new values serially, so we're making one 
 request to get a new value, waiting until we get it back, and then making 
 another. The majority of the time is spent in network time waiting for
 the request to go from my laptop to DSQL's QP and back. You'll notice that
@@ -315,6 +313,8 @@ CREATE TABLE orders (
   --...
 );
 ```
+
+----
 
 [^1]: If you're looking for `SERIAL` support, there are [a lot of reasons not
     to use
