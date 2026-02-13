@@ -16,8 +16,7 @@ about 10,000?
 We've just launched Sequence support in DSQL and we're excited about it. Up
 until now our recommendation has been to use UUIDs, and for truly massive
 scale it still is. But we recognize that there's plenty of places where 
-you'd like to use a human readable digit for an identity on a table. So 
-how do we make sure it still scales? 
+you'd like to use a human readable digit for an identity on a table. 
 
 If you just want to get started with sequences, here's how you make one
 in DSQL:
